@@ -1,0 +1,54 @@
+source = "kinesis"
+sink {
+  good = "elasticsearch"
+  bad = "kinesis"
+}
+enabled = "${in_stream_type}"
+aws {
+  accessKey = iam
+  secretKey = iam
+}
+queue {
+  enabled = kinesis
+  initialPosition = "${initial_position}"
+  initialTimestamp = ""
+  maxRecords = 10000
+  region = "${region}"
+  appName = "${app_name}"
+  disableCloudWatch = true
+}
+streams {
+  inStreamName = "${in_stream_name}"
+  outStreamName = "${out_stream_name}"
+  buffer {
+    byteLimit = ${byte_limit}
+    recordLimit = ${record_limit}
+    timeLimit = ${time_limit_ms}
+  }
+}
+elasticsearch {
+  client {
+    endpoint = "${es_cluster_endpoint}"
+    port = "${es_cluster_port}"
+%{ if es_cluster_basicauth_enabled ~}
+    username = "${es_cluster_username}"
+    password = "${es_cluster_password}"
+%{ endif ~}
+%{ if es_cluster_sharding_enabled ~}
+    shardDateFormat = "${es_cluster_shard_date_format}"
+    shardDateField = "${es_cluster_shard_date_field}"
+%{ endif ~}
+    maxTimeout = 10000
+    maxRetries = 6
+    ssl = ${es_cluster_http_ssl_enabled}
+  }
+  aws {
+    signing = ${aws_es_request_signing_enabled}
+    region = "${aws_es_region}"
+  }
+  cluster {
+    name = "${es_cluster_name}"
+    index = "${es_cluster_index}"
+    documentType = "${es_cluster_document_type}"
+  }
+}
