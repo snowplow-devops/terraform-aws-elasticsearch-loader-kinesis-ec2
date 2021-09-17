@@ -243,18 +243,18 @@ module "es_loader_bad" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_bad_stream_name"></a> [bad\_stream\_name](#input\_bad\_stream\_name) | The name of the bad kinesis stream that the S3 Loader will insert bad data into | `string` | n/a | yes |
+| <a name="input_bad_stream_name"></a> [bad\_stream\_name](#input\_bad\_stream\_name) | The name of the bad kinesis stream that the Elasticsearch Loader will insert bad data into | `string` | n/a | yes |
 | <a name="input_es_cluster_document_type"></a> [es\_cluster\_document\_type](#input\_es\_cluster\_document\_type) | The document type of the data being loaded - this is the type defined in your index mapping (Note: generally 'good' or 'bad') | `string` | n/a | yes |
 | <a name="input_es_cluster_endpoint"></a> [es\_cluster\_endpoint](#input\_es\_cluster\_endpoint) | The endpoint of the cluster to load data into | `string` | n/a | yes |
 | <a name="input_es_cluster_index"></a> [es\_cluster\_index](#input\_es\_cluster\_index) | The name of the Elasticsearch Index to load into | `string` | n/a | yes |
 | <a name="input_es_cluster_name"></a> [es\_cluster\_name](#input\_es\_cluster\_name) | The name of the Elasticsearch Cluster | `string` | n/a | yes |
 | <a name="input_es_cluster_port"></a> [es\_cluster\_port](#input\_es\_cluster\_port) | The port number of the cluster to load data into | `number` | n/a | yes |
-| <a name="input_in_stream_name"></a> [in\_stream\_name](#input\_in\_stream\_name) | The name of the input kinesis stream that the S3 Loader will pull data from | `string` | n/a | yes |
+| <a name="input_in_stream_name"></a> [in\_stream\_name](#input\_in\_stream\_name) | The name of the input kinesis stream that the Elasticsearch Loader will pull data from | `string` | n/a | yes |
 | <a name="input_in_stream_type"></a> [in\_stream\_type](#input\_in\_stream\_type) | The type of data that will be consumed by the application (good, bad or plain-json) | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | A name which will be pre-pended to the resources created | `string` | n/a | yes |
 | <a name="input_ssh_key_name"></a> [ssh\_key\_name](#input\_ssh\_key\_name) | The name of the SSH key-pair to attach to all EC2 nodes deployed | `string` | n/a | yes |
-| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | The list of subnets to deploy the Postgres Loader across | `list(string)` | n/a | yes |
-| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The VPC to deploy the Postgres Loader within | `string` | n/a | yes |
+| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | The list of subnets to deploy the Elasticsearch Loader across | `list(string)` | n/a | yes |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The VPC to deploy the Elasticsearch Loader within | `string` | n/a | yes |
 | <a name="input_amazon_linux_2_ami_id"></a> [amazon\_linux\_2\_ami\_id](#input\_amazon\_linux\_2\_ami\_id) | The AMI ID to use which must be based of of Amazon Linux 2; by default the latest community version is used | `string` | `""` | no |
 | <a name="input_associate_public_ip_address"></a> [associate\_public\_ip\_address](#input\_associate\_public\_ip\_address) | Whether to assign a public ip address to this instance | `bool` | `true` | no |
 | <a name="input_aws_es_domain_name"></a> [aws\_es\_domain\_name](#input\_aws\_es\_domain\_name) | The domain name of the Amazon Elasticsearch Service that signed requests will be made against | `string` | `""` | no |

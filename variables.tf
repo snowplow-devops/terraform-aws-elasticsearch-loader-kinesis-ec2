@@ -4,12 +4,12 @@ variable "name" {
 }
 
 variable "vpc_id" {
-  description = "The VPC to deploy the Postgres Loader within"
+  description = "The VPC to deploy the Elasticsearch Loader within"
   type        = string
 }
 
 variable "subnet_ids" {
-  description = "The list of subnets to deploy the Postgres Loader across"
+  description = "The list of subnets to deploy the Elasticsearch Loader across"
   type        = list(string)
 }
 
@@ -110,12 +110,12 @@ variable "in_stream_type" {
 }
 
 variable "in_stream_name" {
-  description = "The name of the input kinesis stream that the S3 Loader will pull data from"
+  description = "The name of the input kinesis stream that the Elasticsearch Loader will pull data from"
   type        = string
 }
 
 variable "bad_stream_name" {
-  description = "The name of the bad kinesis stream that the S3 Loader will insert bad data into"
+  description = "The name of the bad kinesis stream that the Elasticsearch Loader will insert bad data into"
   type        = string
 }
 
