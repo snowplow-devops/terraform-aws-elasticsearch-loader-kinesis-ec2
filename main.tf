@@ -1,6 +1,6 @@
 locals {
   module_name    = "elasticsearch-loader-kinesis-ec2"
-  module_version = "0.1.1"
+  module_version = "0.1.2"
 
   app_name    = "snowplow-elasticsearch-loader"
   app_version = "1.0.4"
