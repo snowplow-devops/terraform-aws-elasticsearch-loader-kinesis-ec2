@@ -105,7 +105,7 @@ variable "cloudwatch_logs_retention_days" {
 # --- Configuration options
 
 variable "in_stream_type" {
-  description = "The type of data that will be consumed by the application (good, bad or plain-json)"
+  description = "The type of data that will be consumed by the application (ENRICHED_EVENTS, BAD_ROWS or JSON)"
   type        = string
 }
 
@@ -125,20 +125,32 @@ variable "initial_position" {
   type        = string
 }
 
-variable "byte_limit" {
+variable "buffer_byte_limit" {
   description = "The amount of bytes to buffer events before pushing them to Elasticsearch"
   default     = 1000000
   type        = number
 }
 
-variable "record_limit" {
+variable "buffer_record_limit" {
   description = "The number of events to buffer before pushing them to Elasticsearch"
   default     = 500
   type        = number
 }
 
-variable "time_limit_ms" {
+variable "buffer_time_limit_ms" {
   description = "The amount of time to buffer events before pushing them to Elasticsearch"
+  default     = 500
+  type        = number
+}
+
+variable "chunk_byte_limit" {
+  description = "The maximum amount of bytes to send to Elasticsearch in one request"
+  default     = 1000000
+  type        = number
+}
+
+variable "chunk_record_limit" {
+  description = "The maximum number of events to send to Elasticsearch in one request"
   default     = 500
   type        = number
 }
@@ -184,11 +196,6 @@ variable "es_cluster_http_ssl_enabled" {
   default     = true
 }
 
-variable "es_cluster_name" {
-  description = "The name of the Elasticsearch Cluster"
-  type        = string
-}
-
 variable "es_cluster_index" {
   description = "The name of the Elasticsearch Index to load into"
   type        = string
@@ -197,6 +204,7 @@ variable "es_cluster_index" {
 variable "es_cluster_document_type" {
   description = "The document type of the data being loaded - this is the type defined in your index mapping (Note: generally 'good' or 'bad')"
   type        = string
+  default     = ""
 }
 
 variable "aws_es_domain_name" {

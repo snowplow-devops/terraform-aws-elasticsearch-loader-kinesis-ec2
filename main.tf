@@ -3,7 +3,7 @@ locals {
   module_version = "0.1.1"
 
   app_name    = "snowplow-elasticsearch-loader"
-  app_version = "1.0.0"
+  app_version = "2.0.8"
 
   local_tags = {
     Name           = var.name
@@ -293,20 +293,23 @@ locals {
     app_name         = var.name
     in_stream_type   = var.in_stream_type
     in_stream_name   = var.in_stream_name
-    out_stream_name  = var.bad_stream_name
+    bad_stream_name  = var.bad_stream_name
     region           = data.aws_region.current.name
     initial_position = var.initial_position
 
-    byte_limit    = var.byte_limit
-    record_limit  = var.record_limit
-    time_limit_ms = var.time_limit_ms
+    buffer_byte_limit    = var.buffer_byte_limit
+    buffer_record_limit  = var.buffer_record_limit
+    buffer_time_limit_ms = var.buffer_time_limit_ms
 
-    es_cluster_endpoint         = var.es_cluster_endpoint
-    es_cluster_port             = var.es_cluster_port
-    es_cluster_http_ssl_enabled = var.es_cluster_http_ssl_enabled
-    es_cluster_name             = var.es_cluster_name
-    es_cluster_index            = var.es_cluster_index
-    es_cluster_document_type    = var.es_cluster_document_type
+    chunk_byte_limit   = var.chunk_byte_limit
+    chunk_record_limit = var.chunk_record_limit
+
+    es_cluster_endpoint          = var.es_cluster_endpoint
+    es_cluster_port              = var.es_cluster_port
+    es_cluster_http_ssl_enabled  = var.es_cluster_http_ssl_enabled
+    es_cluster_index             = var.es_cluster_index
+    es_cluster_document_type     = var.es_cluster_document_type
+    es_cluster_document_type_set = var.es_cluster_document_type != ""
 
     es_cluster_basicauth_enabled = var.es_cluster_username != ""
     es_cluster_username          = var.es_cluster_username
