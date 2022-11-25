@@ -199,7 +199,7 @@ module "es_loader_bad" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.75.0 |
 
 ## Providers
@@ -212,9 +212,10 @@ module "es_loader_bad" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_kcl_autoscaling"></a> [kcl\_autoscaling](#module\_kcl\_autoscaling) | snowplow-devops/dynamodb-autoscaling/aws | 0.1.1 |
-| <a name="module_tags"></a> [tags](#module\_tags) | snowplow-devops/tags/aws | 0.1.2 |
-| <a name="module_telemetry"></a> [telemetry](#module\_telemetry) | snowplow-devops/telemetry/snowplow | 0.2.0 |
+| <a name="module_instance_type_metrics"></a> [instance\_type\_metrics](#module\_instance\_type\_metrics) | snowplow-devops/ec2-instance-type-metrics/aws | 0.1.2 |
+| <a name="module_kcl_autoscaling"></a> [kcl\_autoscaling](#module\_kcl\_autoscaling) | snowplow-devops/dynamodb-autoscaling/aws | 0.2.0 |
+| <a name="module_tags"></a> [tags](#module\_tags) | snowplow-devops/tags/aws | 0.2.0 |
+| <a name="module_telemetry"></a> [telemetry](#module\_telemetry) | snowplow-devops/telemetry/snowplow | 0.3.0 |
 
 ## Resources
 
@@ -247,7 +248,7 @@ module "es_loader_bad" {
 | <a name="input_es_cluster_index"></a> [es\_cluster\_index](#input\_es\_cluster\_index) | The name of the Elasticsearch Index to load into | `string` | n/a | yes |
 | <a name="input_es_cluster_port"></a> [es\_cluster\_port](#input\_es\_cluster\_port) | The port number of the cluster to load data into | `number` | n/a | yes |
 | <a name="input_in_stream_name"></a> [in\_stream\_name](#input\_in\_stream\_name) | The name of the input kinesis stream that the Elasticsearch Loader will pull data from | `string` | n/a | yes |
-| <a name="input_in_stream_type"></a> [in\_stream\_type](#input\_in\_stream\_type) | The type of data that will be consumed by the application (ENRICHED_EVENTS, BAD_ROWS or JSON) | `string` | n/a | yes |
+| <a name="input_in_stream_type"></a> [in\_stream\_type](#input\_in\_stream\_type) | The type of data that will be consumed by the application (ENRICHED\_EVENTS, BAD\_ROWS or JSON) | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | A name which will be pre-pended to the resources created | `string` | n/a | yes |
 | <a name="input_ssh_key_name"></a> [ssh\_key\_name](#input\_ssh\_key\_name) | The name of the SSH key-pair to attach to all EC2 nodes deployed | `string` | n/a | yes |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | The list of subnets to deploy the Elasticsearch Loader across | `list(string)` | n/a | yes |
@@ -271,7 +272,8 @@ module "es_loader_bad" {
 | <a name="input_es_cluster_username"></a> [es\_cluster\_username](#input\_es\_cluster\_username) | A basicauth username to use when authenticating | `string` | `""` | no |
 | <a name="input_iam_permissions_boundary"></a> [iam\_permissions\_boundary](#input\_iam\_permissions\_boundary) | The permissions boundary ARN to set on IAM roles created | `string` | `""` | no |
 | <a name="input_initial_position"></a> [initial\_position](#input\_initial\_position) | Where to start processing the input Kinesis Stream from (TRIM\_HORIZON or LATEST) | `string` | `"TRIM_HORIZON"` | no |
-| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | The instance type to use | `string` | `"t3.micro"` | no |
+| <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | The instance type to use | `string` | `"t3a.micro"` | no |
+| <a name="input_java_opts"></a> [java\_opts](#input\_java\_opts) | Custom JAVA Options | `string` | `"-Dorg.slf4j.simpleLogger.defaultLogLevel=info -XX:MinRAMPercentage=50 -XX:MaxRAMPercentage=75"` | no |
 | <a name="input_kcl_read_max_capacity"></a> [kcl\_read\_max\_capacity](#input\_kcl\_read\_max\_capacity) | The maximum READ capacity for the KCL DynamoDB table | `number` | `10` | no |
 | <a name="input_kcl_read_min_capacity"></a> [kcl\_read\_min\_capacity](#input\_kcl\_read\_min\_capacity) | The minimum READ capacity for the KCL DynamoDB table | `number` | `1` | no |
 | <a name="input_kcl_write_max_capacity"></a> [kcl\_write\_max\_capacity](#input\_kcl\_write\_max\_capacity) | The maximum WRITE capacity for the KCL DynamoDB table | `number` | `10` | no |
@@ -293,7 +295,7 @@ module "es_loader_bad" {
 
 # Copyright and license
 
-The Terraform AWS Elasticsearch Loader on EC2 project is Copyright 2021-2021 Snowplow Analytics Ltd.
+The Terraform AWS Elasticsearch Loader on EC2 project is Copyright 2021-2022 Snowplow Analytics Ltd.
 
 Licensed under the [Apache License, Version 2.0][license] (the "License");
 you may not use this software except in compliance with the License.
