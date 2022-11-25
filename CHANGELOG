@@ -1,3 +1,7 @@
+Version 0.3.0 (2022-11-25)
+--------------------------
+Increase memory allocation for application (#7)
+
 Version 0.2.0 (2022-10-19)
 --------------------------
 Bump snowplow-elasticsearch-loader to 2.0.8 (#4) 
