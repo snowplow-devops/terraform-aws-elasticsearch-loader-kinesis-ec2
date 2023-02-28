@@ -3,7 +3,7 @@ locals {
   module_version = "0.3.0"
 
   app_name    = "snowplow-elasticsearch-loader"
-  app_version = "2.0.8"
+  app_version = "2.0.9"
 
   local_tags = {
     Name           = var.name
