@@ -299,7 +299,7 @@ module "es_loader_bad" {
 
 # Copyright and license
 
-The Terraform AWS Elasticsearch Loader on EC2 project is Copyright 2021-2022 Snowplow Analytics Ltd.
+The Terraform AWS Elasticsearch Loader on EC2 project is Copyright 2021-2023 Snowplow Analytics Ltd.
 
 Licensed under the [Apache License, Version 2.0][license] (the "License");
 you may not use this software except in compliance with the License.
