@@ -1,6 +1,6 @@
 locals {
   module_name    = "elasticsearch-loader-kinesis-ec2"
-  module_version = "0.4.2"
+  module_version = "0.4.3"
 
   app_name    = "snowplow-elasticsearch-loader"
   app_version = "2.0.9"
@@ -325,7 +325,7 @@ locals {
 
 module "service" {
   source  = "snowplow-devops/service-ec2/aws"
-  version = "0.2.0"
+  version = "0.2.1"
 
   user_supplied_script = local.user_data
   name                 = var.name
