@@ -1,8 +1,8 @@
 readonly CONFIG_DIR=/opt/snowplow/config
 
 sudo mkdir -p $${CONFIG_DIR}
-sudo cat << EOF > $${CONFIG_DIR}/es_loader.hocon
-${config}
+sudo base64 --decode << EOF > $${CONFIG_DIR}/es_loader.hocon
+${config_b64}
 EOF
 
 sudo docker run \
@@ -19,9 +19,10 @@ sudo docker run \
   --log-opt max-size=10m \
   --log-opt max-file=5 \
 %{ endif ~}
-  -v $${CONFIG_DIR}:/snowplow/config \
-  -e 'JAVA_OPTS=${java_opts}' \
+  --mount type=bind,source=$${CONFIG_DIR},target=/snowplow/config \
+  --env JDK_JAVA_OPTIONS='${java_opts}' \
   --env ACCEPT_LIMITED_USE_LICENSE=${accept_limited_use_license} \
+  --env INSTANCE_ID=$(get_instance_id) \
   snowplow/elasticsearch-loader:${version} \
   --config /snowplow/config/es_loader.hocon
 
