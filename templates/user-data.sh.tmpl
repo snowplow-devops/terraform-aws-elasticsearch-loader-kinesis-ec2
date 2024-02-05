@@ -21,6 +21,7 @@ sudo docker run \
 %{ endif ~}
   -v $${CONFIG_DIR}:/snowplow/config \
   -e 'JAVA_OPTS=${java_opts}' \
+  --env ACCEPT_LIMITED_USE_LICENSE=${accept_limited_use_license} \
   snowplow/elasticsearch-loader:${version} \
   --config /snowplow/config/es_loader.hocon
 
