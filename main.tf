@@ -310,6 +310,8 @@ locals {
   })
 
   user_data = templatefile("${path.module}/templates/user-data.sh.tmpl", {
+    accept_limited_use_license = var.accept_limited_use_license
+
     config  = local.hocon
     version = local.app_version
 
