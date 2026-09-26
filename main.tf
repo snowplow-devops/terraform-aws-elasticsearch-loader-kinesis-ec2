@@ -26,7 +26,7 @@ data "aws_caller_identity" "current" {}
 
 module "telemetry" {
   source  = "snowplow-devops/telemetry/snowplow"
-  version = "0.5.0"
+  version = "0.6.3"
 
   count = var.telemetry_enabled ? 1 : 0
 
@@ -315,7 +315,7 @@ locals {
     config_b64 = base64encode(local.hocon)
     version    = local.app_version
 
-    telemetry_script = join("", module.telemetry.*.amazon_linux_2_user_data)
+    telemetry_script = join("", module.telemetry.*.amazon_linux_2023_user_data)
 
     cloudwatch_logs_enabled   = var.cloudwatch_logs_enabled
     cloudwatch_log_group_name = local.cloudwatch_log_group_name
